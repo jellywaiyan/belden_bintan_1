@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>What Sea Character Are You? | Belden Year End Bintan Retreat 2026</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka (playful headers) & Plus Jakarta Sans (clean readable body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Fredoka', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        abyss: '#041526',
+                        deepTeal: '#0a4d68',
+                        turquoise: '#088395',
+                        seafoam: '#05bfdb',
+                        coral: '#ff6b6b',
+                        treasure: '#ffd166',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base Ocean Atmosphere */
+        body {
+            background: radial-gradient(circle at 50% 0%, #0c5c7a 0%, #062840 45%, #041526 100%);
+            min-height: 100vh;
+            color: #f0f9ff;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Subtle Sunbeams from the Ocean Surface */
+        .light-rays {
+            position: fixed;
+            top: -10%;
+            left: 0;
+            width: 100%;
+            height: 75vh;
+            background: repeating-linear-gradient(
+                105deg,
+                rgba(5, 191, 219, 0.08) 0%,
+                rgba(5, 191, 219, 0.02) 8%,
+                transparent 15%,
+                rgba(255, 209, 102, 0.04) 22%,
+                transparent 30%
+            );
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+            pointer-events: none;
+            z-index: 0;
+            animation: raySway 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes raySway {
+            0% { transform: skewX(-4deg) scale(1.05); opacity: 0.7; }
+            100% { transform: skewX(4deg) scale(1.1); opacity: 1; }
+        }
+
+        /* Rising Bioluminescent Bubbles */
+        .bubble {
+            position: fixed;
+            bottom: -40px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.45), rgba(5, 191, 219, 0.1) 70%, rgba(255, 255, 255, 0.25));
+            box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.4), 0 0 8px rgba(5, 191, 219, 0.2);
+            pointer-events: none;
+            z-index: 0;
+            animation: riseUp linear infinite;
+        }
+
+        @keyframes riseUp {
+            0% {
+                transform: translateY(0) translateX(0) scale(0.8);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-50vh) translateX(15px) scale(1);
+            }
+            85% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-110vh) translateX(-10px) scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        /* Glassmorphism Marine Card */
+        .ocean-glass {
+            background: rgba(8, 38, 62, 0.68);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(5, 191, 219, 0.28);
+            box-shadow: 0 20px 50px rgba(2, 12, 24, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        /* Option Button Hover & Active States */
+        .option-btn {
+            background: rgba(10, 77, 104, 0.35);
+            border: 1.5px solid rgba(5, 191, 219, 0.25);
+            transition: all 0.22s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .option-btn:hover {
+            background: rgba(8, 131, 149, 0.45);
+            border-color: #05bfdb;
+            transform: translateY(-2px);
+        }
+
+        .option-btn:active, .option-btn.selected {
+            background: linear-gradient(135deg, rgba(8, 131, 149, 0.8), rgba(5, 191, 219, 0.65));
+            border-color: #ffd166;
+            box-shadow: 0 0 20px rgba(5, 191, 219, 0.4);
+            transform: scale(0.985);
+        }
+
+        /* Smooth Screen Transitions */
+        .screen-enter {
+            animation: screenFadeSlide 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes screenFadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Floating Animation for Hero & Character Badges */
+        .float-slow {
+            animation: floatBob 4s ease-in-out infinite;
+        }
+
+        @keyframes floatBob {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+
+        /* Submarine / Fish Progress Bobbing */
+        .swim-bob {
+            animation: swimMotion 1.4s ease-in-out infinite;
+        }
+
+        @keyframes swimMotion {
+            0%, 100% { transform: translateY(-50%) rotate(-3deg); }
+            50% { transform: translateY(-62%) rotate(4deg); }
+        }
+
+        /* Sonar Radar Pulse during Diving/Calculating Screen */
+        .sonar-ring {
+            position: absolute;
+            border: 2px solid #05bfdb;
+            border-radius: 50%;
+            animation: sonarPing 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+        }
+
+        @keyframes sonarPing {
+            0% { width: 40px; height: 40px; opacity: 0.9; }
+            100% { width: 220px; height: 220px; opacity: 0; }
+        }
+
+        /* Golden Shimmer Border on Result Card */
+        .treasure-card-border {
+            position: relative;
+            background: linear-gradient(165deg, rgba(10, 56, 86, 0.88) 0%, rgba(4, 21, 38, 0.95) 100%);
+            border: 2px solid rgba(255, 209, 102, 0.55);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 30px rgba(5, 191, 219, 0.2);
+        }
+
+        /* Celebratory Bubble Burst Particles on Result Reveal */
+        .burst-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 40;
+            animation: burstFloat 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes burstFloat {
+            0% {
+                transform: translate(0, 0) scale(0.4) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(1.15) rotate(var(--rot));
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-seafoam selection:text-abyss flex flex-col justify-between">
+
+    <!-- Ambient Ocean Background Elements -->
+    <div class="light-rays"></div>
+    <div id="bubble-container" aria-hidden="true"></div>
+
+    <!-- Top Event Header -->
+    <header class="relative z-10 w-full max-w-lg mx-auto px-5 pt-5 pb-2 flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2.5">
+            <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-turquoise/30 border border-seafoam/40 text-treasure text-base shadow-inner flex-shrink-0">
+                🔱
+            </span>
+            <div>
+                <p class="text-[11px] uppercase tracking-widest text-treasure font-bold leading-tight">Belden • Bintan Retreat 2026</p>
+                <p class="text-xs text-seafoam font-semibold">Under The Sea Dinner Edition</p>
+            </div>
+        </div>
+        <button id="header-restart-btn" onclick="resetQuiz()" class="hidden text-xs font-semibold text-sky-200/80 hover:text-treasure px-3 py-1.5 rounded-full bg-white/5 border border-white/10 transition flex-shrink-0 cursor-pointer">
+            ↺ Restart
+        </button>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 flex-1 w-full max-w-lg mx-auto px-4 py-3 flex flex-col justify-center">
+
+        <!-- ========================================== -->
+        <!-- SCREEN 1: WELCOME / LANDING SCREEN         -->
+        <!-- ========================================== -->
+        <section id="welcome-screen" class="screen-enter ocean-glass rounded-3xl p-6 sm:p-8 text-center relative overflow-hidden">
+            <!-- Decorative Top Wave SVG -->
+            <div class="absolute top-0 left-0 w-full overflow-hidden leading-none opacity-25 pointer-events-none">
+                <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-12 fill-seafoam">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+                </svg>
+            </div>
+
+            <!-- Floating Hero Crest -->
+            <div class="float-slow mx-auto mb-5 w-28 h-28 rounded-full bg-gradient-to-b from-turquoise/40 to-abyss/80 border-2 border-treasure/60 flex items-center justify-center shadow-[0_0_35px_rgba(5,191,219,0.4)] relative">
+                <!-- Custom SVG Coral & Trident Emblem -->
+                <svg class="w-16 h-16" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="44" stroke="#05bfdb" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+                    <!-- Trident -->
+                    <path d="M50 18V82M50 18L44 26M50 18L56 26" stroke="#ffd166" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M34 26V40C34 48 41 52 50 52C59 52 66 48 66 40V26" stroke="#ffd166" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M34 26L29 33M34 26L39 33M66 26L61 33M66 26L71 33" stroke="#ffd166" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- Bubbles -->
+                    <circle cx="24" cy="62" r="4" fill="#05bfdb" opacity="0.8"/>
+                    <circle cx="77" cy="58" r="5" fill="#ff6b6b" opacity="0.85"/>
+                    <circle cx="72" cy="74" r="3" fill="#ffd166" opacity="0.8"/>
+                </svg>
+                <span class="absolute -bottom-2 bg-coral text-white text-[11px] font-bold px-3 py-0.5 rounded-full shadow-md tracking-wide uppercase">
+                    10 Quick Questions
+                </span>
+            </div>
+
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-treasure/15 border border-treasure/35 text-treasure text-[11px] font-bold uppercase tracking-wider mb-3">
+                <span>🏝️ Belden Year End Bintan Retreat 2026</span>
+            </div>
+
+            <h1 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight mb-3">
+                What <span class="text-transparent bg-clip-text bg-gradient-to-r from-seafoam via-treasure to-coral">Sea Character</span> Are You?
+            </h1>
+
+            <p class="text-sky-100/85 text-sm sm:text-base leading-relaxed mb-6 max-w-sm mx-auto">
+                Welcome to Bintan’s ocean floor! Answer 10 fun questions about your retreat energy & team style to reveal your true sea alter-ego.
+            </p>
+
+            <!-- Character Teaser Pills -->
+            <div class="flex flex-wrap justify-center gap-2 mb-7 text-xs">
+                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sky-200">🧽 SpongeBob</span>
+                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sky-200">🧜‍♀️ Ariel</span>
+                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sky-200">🔱 Poseidon</span>
+                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sky-200">🦀 Sebastian</span>
+                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sky-200">🐙 Ursula</span>
+                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sky-200">+3 More!</span>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-coral via-[#ff7b54] to-treasure text-abyss font-display font-bold text-lg shadow-[0_10px_25px_rgba(255,107,107,0.45)] hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer">
+                <span>Dive Into The Quiz</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                </svg>
+            </button>
+
+            <p class="text-[11px] text-sky-300/60 mt-4">
+                Takes under 60 seconds • Compare characters with your Bintan dinner table!
+            </p>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SCREEN 2: INTERACTIVE QUIZ QUESTIONS       -->
+        <!-- ========================================== -->
+        <section id="quiz-screen" class="hidden ocean-glass rounded-3xl p-5 sm:p-7 relative">
+            <!-- Ocean Depth Progress Bar -->
+            <div class="mb-6">
+                <div class="flex justify-between items-center text-xs font-semibold mb-2">
+                    <span id="question-counter" class="text-treasure tracking-wide uppercase">Question 1 of 10</span>
+                    <span id="depth-indicator" class="text-seafoam">Depth: 100m 🌊</span>
+                </div>
+                
+                <!-- Progress Track -->
+                <div class="relative w-full h-3.5 bg-abyss/80 rounded-full border border-seafoam/30 p-0.5 overflow-visible">
+                    <div id="progress-fill" class="h-full rounded-full bg-gradient-to-r from-turquoise via-seafoam to-treasure transition-all duration-500 ease-out" style="width: 10%;"></div>
+                    <!-- Swimming Diver Icon -->
+                    <div id="progress-sub" class="swim-bob absolute top-1/2 -translate-y-1/2 -ml-4 text-xl transition-all duration-500 ease-out drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]" style="left: 10%;">
+                        🤿
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Content Container (Animated on step change) -->
+            <div id="question-container" class="screen-enter">
+                <div class="inline-block px-3 py-1 rounded-full bg-turquoise/30 border border-seafoam/30 text-seafoam text-[11px] font-bold uppercase tracking-wider mb-2.5" id="question-category">
+                    Dinner Table Vibes
+                </div>
+                
+                <h2 id="question-text" class="font-display text-xl sm:text-2xl font-bold text-white leading-snug mb-5">
+                    Loading question...
+                </h2>
+
+                <!-- Answer Options List -->
+                <div id="options-list" class="space-y-3">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+
+            <!-- Bottom Navigation (Back Button) -->
+            <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                <button id="prev-btn" onclick="prevQuestion()" class="flex items-center gap-1.5 text-sm font-semibold text-sky-200/80 hover:text-white disabled:opacity-30 disabled:pointer-events-none py-2 px-3 rounded-xl hover:bg-white/5 transition cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    <span>Previous</span>
+                </button>
+
+                <span class="text-xs text-sky-300/60 italic">Tap an answer to continue</span>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SCREEN 3: DIVING / CALCULATING ANIMATION   -->
+        <!-- ========================================== -->
+        <section id="loading-screen" class="hidden ocean-glass rounded-3xl p-8 text-center relative overflow-hidden min-h-[380px] flex flex-col items-center justify-center">
+            <div class="relative flex items-center justify-center w-44 h-44 mb-6">
+                <div class="sonar-ring"></div>
+                <div class="sonar-ring" style="animation-delay: 0.7s;"></div>
+                <div class="sonar-ring" style="animation-delay: 1.4s;"></div>
+                <div class="relative z-10 w-24 h-24 rounded-full bg-gradient-to-tr from-deepTeal to-seafoam flex items-center justify-center text-5xl shadow-[0_0_30px_rgba(5,191,219,0.6)] animate-bounce">
+                    🐚
+                </div>
+            </div>
+
+            <h2 class="font-display text-2xl font-bold text-white mb-2">
+                Consulting the Ocean Oracle...
+            </h2>
+            <p id="loading-subtext" class="text-sm text-seafoam font-medium animate-pulse">
+                Analyzing your dinner table energy...
+            </p>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SCREEN 4: CHARACTER RESULT CARD            -->
+        <!-- ========================================== -->
+        <section id="result-screen" class="hidden screen-enter">
+            <!-- Shareable-Style Character Card -->
+            <div id="result-card" class="treasure-card-border rounded-3xl p-6 sm:p-7 relative overflow-hidden">
+                <!-- Decorative Top Corner Glow -->
+                <div class="absolute -top-16 -right-16 w-44 h-44 bg-treasure/15 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="absolute -bottom-16 -left-16 w-44 h-44 bg-seafoam/20 rounded-full blur-2xl pointer-events-none"></div>
+
+                <!-- Card Top Tag -->
+                <div class="flex items-center justify-between mb-4">
+                    <span class="px-3 py-1 rounded-full bg-treasure/20 border border-treasure/40 text-treasure text-[11px] font-bold uppercase tracking-wider">
+                        ✨ Belden Bintan Retreat 2026
+                    </span>
+                    <span id="result-emoji-badge" class="text-2xl">🌊</span>
+                </div>
+
+                <!-- Custom SVG Character Avatar + Title -->
+                <div class="flex flex-col items-center text-center mb-5">
+                    <div id="character-artwork" class="float-slow w-32 h-32 rounded-full p-1.5 bg-gradient-to-b from-treasure via-seafoam to-turquoise shadow-[0_0_30px_rgba(255,209,102,0.3)] mb-4 flex items-center justify-center">
+                        <!-- Custom SVG injected here -->
+                    </div>
+
+                    <p id="character-archetype" class="text-xs sm:text-sm font-bold uppercase tracking-widest text-seafoam mb-1">
+                        The Energetic Team Catalyst
+                    </p>
+                    <h1 id="character-name" class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                        SpongeBob SquarePants
+                    </h1>
+                </div>
+
+                <!-- Trait Pills -->
+                <div id="character-traits" class="flex flex-wrap justify-center gap-2 mb-5">
+                    <!-- Injected via JS -->
+                </div>
+
+                <!-- Main Description -->
+                <div class="bg-abyss/60 border border-white/10 rounded-2xl p-4 mb-4">
+                    <p id="character-description" class="text-sm text-sky-100/90 leading-relaxed">
+                        Description goes here.
+                    </p>
+                </div>
+
+                <!-- Dinner Superpower & Retreat/Office Vibe Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                    <div class="bg-deepTeal/40 border border-seafoam/25 rounded-2xl p-3.5">
+                        <div class="flex items-center gap-1.5 text-treasure text-xs font-bold uppercase tracking-wider mb-1">
+                            <span>🍽️</span>
+                            <span>Dinner Superpower</span>
+                        </div>
+                        <p id="character-dinner-power" class="text-xs sm:text-sm text-white/95 font-medium leading-snug">
+                            Power description
+                        </p>
+                    </div>
+
+                    <div class="bg-deepTeal/40 border border-seafoam/25 rounded-2xl p-3.5">
+                        <div class="flex items-center gap-1.5 text-coral text-xs font-bold uppercase tracking-wider mb-1">
+                            <span>🏝️</span>
+                            <span>Retreat & Work Vibe</span>
+                        </div>
+                        <p id="character-work-vibe" class="text-xs sm:text-sm text-white/95 font-medium leading-snug">
+                            Work vibe description
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Best Table Mates -->
+                <div class="bg-gradient-to-r from-turquoise/25 to-deepTeal/35 border border-treasure/30 rounded-2xl p-3.5 flex items-center justify-between gap-3">
+                    <div>
+                        <p class="text-[11px] uppercase tracking-wider text-treasure font-bold">🥂 Best Table Mates</p>
+                        <p id="character-table-mates" class="text-xs sm:text-sm text-white font-semibold mt-0.5">
+                            Patrick Star & Nemo
+                        </p>
+                    </div>
+                    <span class="text-2xl">🐚</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons Below Card -->
+            <div class="mt-5 space-y-3">
+                <button onclick="copyResultToShare()" id="share-btn" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-treasure via-[#ffbe3d] to-coral text-abyss font-display font-bold text-base sm:text-lg shadow-[0_10px_25px_rgba(255,209,102,0.35)] hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+                    </svg>
+                    <span>Copy Result to Share</span>
+                </button>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="openRosterModal()" class="w-full py-3.5 px-4 rounded-2xl bg-turquoise/30 hover:bg-turquoise/45 border border-seafoam/35 text-white font-semibold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 cursor-pointer">
+                        <span>🧜‍♂️</span>
+                        <span>See All Characters</span>
+                    </button>
+
+                    <button onclick="resetQuiz()" class="w-full py-3.5 px-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 text-sky-100 font-semibold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 cursor-pointer">
+                        <span>🔄</span>
+                        <span>Play Again</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- MODAL: ALL 8 SEA CHARACTERS ROSTER         -->
+    <!-- ========================================== -->
+    <div id="roster-modal" class="fixed inset-0 z-50 hidden flex items-end sm:items-center justify-center bg-abyss/80 backdrop-blur-md p-0 sm:p-4">
+        <div class="ocean-glass w-full max-w-lg max-h-[85vh] rounded-t-3xl sm:rounded-3xl p-5 sm:p-6 flex flex-col border-t-2 sm:border-2 border-seafoam/40 shadow-2xl screen-enter">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
+                <div>
+                    <p class="text-[11px] uppercase tracking-widest text-treasure font-bold">Belden Bintan Retreat 2026</p>
+                    <h3 class="font-display text-xl font-bold text-white">All 8 Sea Characters</h3>
+                </div>
+                <button onclick="closeRosterModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-lg font-bold transition cursor-pointer" aria-label="Close modal">
+                    ✕
+                </button>
+            </div>
+
+            <div id="roster-list" class="overflow-y-auto space-y-3 pr-1 flex-1">
+                <!-- Populated dynamically via JS -->
+            </div>
+
+            <button onclick="closeRosterModal()" class="mt-4 w-full py-3 rounded-2xl bg-gradient-to-r from-turquoise to-seafoam text-abyss font-display font-bold text-sm cursor-pointer">
+                Back to My Result
+            </button>
+        </div>
+    </div>
+
+    <!-- Custom Toast Notification (Replaces alert()) -->
+    <div id="toast-notification" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-4 transition-all duration-300 w-[90%] max-w-sm">
+        <div class="bg-abyss/95 border-2 border-treasure text-white px-4 py-3 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] flex items-center gap-3">
+            <span class="text-xl">🎉</span>
+            <p id="toast-message" class="text-xs sm:text-sm font-semibold text-treasure">
+                Result copied! Paste it into your Belden Bintan chat!
+            </p>
+        </div>
+    </div>
+
+    <!-- Subtle Footer -->
+    <footer class="relative z-10 text-center py-4 px-4 text-[11px] text-sky-300/50">
+        Belden Year End Bintan Retreat 2026 • Under the Sea Dinner 🌊
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- APPLICATION LOGIC & DATA                   -->
+    <!-- ========================================== -->
+    <script>
+        /**
+         * 1. CHARACTER DATABASE (8 Distinct Ocean Characters)
+         */
+        const CHARACTERS = {
+            spongebob: {
+                id: 'spongebob',
+                name: 'SpongeBob SquarePants',
+                emoji: '🧽',
+                archetype: 'The Energetic Team Catalyst',
+                traits: ['Infectious Energy', 'Team Cheerleader', 'Always Ready'],
+                description: 'You bring pure sunshine to the ocean floor! From the morning ferry ride to Bintan to tonight’s Under the Sea dinner, your boundless enthusiasm keeps everyone connected and smiling.',
+                dinnerPower: 'Hyping up the whole table to hit the dance floor and photobooth first.',
+                workVibe: '"I’m ready! I’m ready!" — high-speed positivity that keeps every Belden project running smoothly.',
+                tableMates: 'Patrick Star & Nemo',
+                shareQuote: 'I got SpongeBob SquarePants at the Belden Year End Bintan Retreat 2026 Under the Sea Dinner! 🧽✨ Ready to bring maximum ocean energy!',
+                svg: `<svg viewBox="0 0 120 120" class="w-full h-full rounded-full bg-[#ffd166]">
+                        <rect x="24" y="20" width="72" height="68" rx="12" fill="#ffe66d" stroke="#d4a317" stroke-width="3"/>
+                        <circle cx="36" cy="34" r="5" fill="#d4a317" opacity="0.45"/>
+                        <circle cx="82" cy="32" r="6" fill="#d4a317" opacity="0.45"/>
+                        <circle cx="34" cy="72" r="4" fill="#d4a317" opacity="0.45"/>
+                        <circle cx="85" cy="70" r="5" fill="#d4a317" opacity="0.45"/>
+                        <!-- Eyes -->
+                        <circle cx="48" cy="48" r="12" fill="white" stroke="#041526" stroke-width="2.5"/>
+                        <circle cx="72" cy="48" r="12" fill="white" stroke="#041526" stroke-width="2.5"/>
+                        <circle cx="50" cy="48" r="5" fill="#05bfdb"/>
+                        <circle cx="70" cy="48" r="5" fill="#05bfdb"/>
+                        <circle cx="50" cy="48" r="2.5" fill="#041526"/>
+                        <circle cx="70" cy="48" r="2.5" fill="#041526"/>
+                        <!-- Smile & Teeth -->
+                        <path d="M40 65 Q60 80 80 65" stroke="#041526" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <rect x="52" y="70" width="6" height="7" rx="1" fill="white" stroke="#041526" stroke-width="1.5"/>
+                        <rect x="62" y="70" width="6" height="7" rx="1" fill="white" stroke="#041526" stroke-width="1.5"/>
+                        <!-- Red Tie -->
+                        <polygon points="60,88 55,98 60,104 65,98" fill="#ff6b6b" stroke="#041526" stroke-width="1.5"/>
+                      </svg>`
+            },
+            ariel: {
+                id: 'ariel',
+                name: 'Ariel',
+                emoji: '🧜‍♀️',
+                archetype: 'The Curious Explorer & Trendsetter',
+                traits: ['Creative Dreamer', 'Trend Spotter', 'Free-Spirited'],
+                description: 'You are endlessly curious and always asking "What’s next?" Whether exploring hidden coves in Bintan or discovering innovative ideas at work, you love breaking out of routine to find new treasures.',
+                dinnerPower: 'Spotting the secret gourmet dessert station before anyone else knows it exists.',
+                workVibe: 'Full of fresh ideas and always eager to connect new dots, tools, and creative angles.',
+                tableMates: 'Flounder & Sebastian',
+                shareQuote: 'I got Ariel at the Belden Year End Bintan Retreat 2026 Under the Sea Dinner! 🧜‍♀️🐚 Exploring new depths and ocean treasures!',
+                svg: `<svg viewBox="0 0 120 120" class="w-full h-full rounded-full bg-[#088395]">
+                        <!-- Flowing Red Hair -->
+                        <path d="M25 85 C15 55, 30 20, 62 20 C92 20, 102 52, 92 85 C82 70, 35 70, 25 85 Z" fill="#ef476f"/>
+                        <!-- Face -->
+                        <circle cx="60" cy="56" r="22" fill="#ffcdb2"/>
+                        <!-- Hair Swoop -->
+                        <path d="M38 50 C42 28, 76 26, 82 52 C74 38, 52 38, 38 50 Z" fill="#ef476f"/>
+                        <!-- Eyes -->
+                        <circle cx="52" cy="56" r="3.5" fill="#041526"/>
+                        <circle cx="68" cy="56" r="3.5" fill="#041526"/>
+                        <circle cx="53" cy="55" r="1.2" fill="white"/>
+                        <circle cx="69" cy="55" r="1.2" fill="white"/>
+                        <!-- Smile -->
+                        <path d="M53 66 Q60 72 67 66" stroke="#d62828" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <!-- Seashell Accent -->
+                        <circle cx="80" cy="36" r="6" fill="#ffd166"/>
+                        <!-- Mermaid Tail Fin Hint -->
+                        <path d="M40 94 Q60 82 80 94 L72 108 L60 100 L48 108 Z" fill="#06d6a0"/>
+                      </svg>`
+            },
+            sebastian: {
+                id: 'sebastian',
+                name: 'Sebastian',
+                emoji: '🦀',
+                archetype: 'The Master Orchestrator & Logistics Pro',
+                traits: ['Industrial-Grade Reliability', 'Logistics Pro', 'Secret Softie'],
+                description: 'Behind every seamless retreat (and fabulous Under the Sea dinner), there is someone like you orchestrating the symphony! You keep timings rock-solid and secretly love a great celebration.',
+                dinnerPower: 'Knowing the exact ferry schedule, table numbers, and when the lucky draw starts.',
+                workVibe: 'Industrial-grade reliability—keeps every connection tight and turns chaos into harmony.',
+                tableMates: 'King Triton & Ariel',
+                shareQuote: 'I got Sebastian at the Belden Year End Bintan Retreat 2026 Under the Sea Dinner! 🦀🎶 Orchestrating good vibes all night!',
+                svg: `<svg viewBox="0 0 120 120" class="w-full h-full rounded-full bg-[#0a4d68]">
+                        <!-- Crab Claws -->
+                        <path d="M22 45 C12 32, 26 18, 38 30 L32 40 L42 40 C40 52, 26 54, 22 45 Z" fill="#ff6b6b" stroke="#041526" stroke-width="2"/>
+                        <path d="M98 45 C108 32, 94 18, 82 30 L88 40 L78 40 C80 52, 94 54, 98 45 Z" fill="#ff6b6b" stroke="#041526" stroke-width="2"/>
+                        <!-- Eye Stalks -->
+                        <line x1="50" y1="48" x2="46" y2="32" stroke="#ff6b6b" stroke-width="4" stroke-linecap="round"/>
+                        <line x1="70" y1="48" x2="74" y2="32" stroke="#ff6b6b" stroke-width="4" stroke-linecap="round"/>
+                        <circle cx="46" cy="30" r="6" fill="white" stroke="#041526" stroke-width="2"/>
+                        <circle cx="74" cy="30" r="6" fill="white" stroke="#041526" stroke-width="2"/>
+                        <circle cx="47" cy="30" r="2.5" fill="#041526"/>
+                        <circle cx="73" cy="30" r="2.5" fill="#041526"/>
+                        <!-- Shell Body -->
+                        <ellipse cx="60" cy="68" rx="30" ry="22" fill="#ff6b6b" stroke="#041526" stroke-width="2.5"/>
+                        <!-- Conductor Smile -->
+                        <path d="M46 70 Q60 80 74 70" stroke="#041526" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <!-- Mini Bowtie -->
+                        <polygon points="60,92 50,87 50,97" fill="#ffd166"/>
+                        <polygon points="60,92 70,87 70,97" fill="#ffd166"/>
+                      </svg>`
+            },
+            poseidon: {
+                id: 'poseidon',
+                name: 'King Triton / Poseidon',
+                emoji: '🔱',
+                archetype: 'The Visionary Sea Ruler',
+                traits: ['Natural Leader', 'Big-Picture Thinker', 'Commanding Presence'],
+                description: 'When you enter the room, the tide shifts! You possess natural authority, bold vision, and a protective streak over your crew. People look to you when big decisions need to be steered.',
+                dinnerPower: 'Delivering the most charismatic table toast of the entire Bintan retreat.',
+                workVibe: 'Sets the North Star, clears roadblocks, and leads the Belden crew to victory.',
+                tableMates: 'Sebastian & Ursula',
+                shareQuote: 'I got King Triton / Poseidon at the Belden Year End Bintan Retreat 2026 Under the Sea Dinner! 🔱👑 Ruling the waves tonight!',
+                svg: `<svg viewBox="0 0 120 120" class="w-full h-full rounded-full bg-[#041526]">
+                        <!-- Golden Crown -->
+                        <polygon points="36,38 42,20 52,32 60,16 68,32 78,20 84,38" fill="#ffd166" stroke="#b8860b" stroke-width="2" stroke-linejoin="round"/>
+                        <!-- Face -->
+                        <circle cx="60" cy="56" r="20" fill="#f4a261"/>
+                        <!-- Majestic White Beard & Hair -->
+                        <path d="M36 52 C32 75, 45 102, 60 105 C75 102, 88 75, 84 52 C80 65, 72 68, 60 68 C48 68, 40 65, 36 52 Z" fill="#f8f9fa"/>
+                        <!-- Confident Brows & Eyes -->
+                        <path d="M46 49 L55 51" stroke="#495057" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M74 49 L65 51" stroke="#495057" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="51" cy="54" r="2.5" fill="#041526"/>
+                        <circle cx="69" cy="54" r="2.5" fill="#041526"/>
+                        <!-- Trident Tip Accent -->
+                        <path d="M98 30 V95 M92 38 V48 C92 52 104 52 104 48 V38" stroke="#ffd166" stroke-width="3" fill="none" stroke-linecap="round"/>
+                      </svg>`
+            },
+            ursula: {
+                id: 'ursula',
+                name: 'Ursula',
+                emoji: '🐙',
+                archetype: 'The Bold Strategist & Deal-Closer',
+                traits: ['Bold & Persuasive', 'Main-Character Flair', 'Master Negotiator'],
+                description: 'Why blend into the coral reef when you were born to command the spotlight? You are sharp, witty, strategic, and know how to close deals with undeniable style and theatrical flair.',
+                dinnerPower: 'Winning Best Dressed and negotiating extra dessert portions effortlessly.',
+                workVibe: 'Knows all the retreat lore, negotiates win-win outcomes, and brings bold creativity.',
+                tableMates: 'King Triton & Ariel',
+                shareQuote: 'I got Ursula at the Belden Year End Bintan Retreat 2026 Under the Sea Dinner! 🐙💜 Bringing main-character glamour to the abyss!',
+                svg: `<svg viewBox="0 0 120 120" class="w-full h-full rounded-full bg-[#3c096c]">
+                        <!-- Dramatic White Hair -->
+                        <path d="M35 55 C28 28, 48 16, 60 22 C72 16, 92 28, 85 55 Z" fill="#f8f9fa"/>
+                        <!-- Lavender Face -->
+                        <circle cx="60" cy="56" r="21" fill="#c77dff"/>
+                        <!-- Arching Eyebrows & Eyes -->
+                        <path d="M44 47 Q50 42 56 48" stroke="#240046" stroke-width="2.5" fill="none"/>
+                        <path d="M64 48 Q70 42 76 47" stroke="#240046" stroke-width="2.5" fill="none"/>
+                        <circle cx="51" cy="53" r="3" fill="#041526"/>
+                        <circle cx="69" cy="53" r="3" fill="#041526"/>
+                        <!-- Confident Smirk & Beauty Mark -->
+                        <path d="M51 66 Q61 72 70 64" stroke="#9d0208" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <circle cx="72" cy="68" r="1.5" fill="#240046"/>
+                        <!-- Golden Nautilus Necklace -->
+                        <circle cx="60" cy="83" r="6" fill="#ffd166" stroke="#240046" stroke-width="1.5"/>
+                        <!-- Tentacles -->
+                        <path d="M32 95 Q45 85 52 102 M88 95 Q75 85 68 102" stroke="#5a189a" stroke-width="6" fill="none" stroke-linecap="round"/>
+                      </svg>`
+            },
+            flounder: {
+                id: 'flounder',
+                name: 'Flounder',
+                emoji: '🐠',
+                archetype: 'The Loyal Wingman & Vibe Checker',
+                traits: ['Ride-or-Die Teammate', 'Thoughtful & Kind', 'Heart of Gold'],
+                description: 'You might double-check the lifejacket instructions on the Bintan ferry, yet you ALWAYS show up for your teammates! You are empathetic, dependable, and the glue that keeps the team connected.',
+                dinnerPower: 'Remembering everyone’s drink orders and making sure nobody feels left out.',
+                workVibe: 'The ultimate wingman—checks every signal and always has your back in meetings.',
+                tableMates: 'Ariel & Nemo',
+                shareQuote: 'I got Flounder at the Belden Year End Bintan Retreat 2026 Under the Sea Dinner! 🐠💛 Loyal wingman & ready to celebrate!',
+                svg: `<svg viewBox="0 0 120 120" class="w-full h-full rounded-full bg-[#0077b6]">
+                        <!-- Blue Top & Side Fins -->
+                        <path d="M42 32 Q60 15 78 32 Z" fill="#00b4d8"/>
+                        <path d="M22 62 L36 52 L36 72 Z" fill="#00b4d8"/>
+                        <path d="M98 62 L84 52 L84 72 Z" fill="#00b4d8"/>
+                        <!-- Chubby Yellow Fish Body -->
+                        <circle cx="60" cy="62" r="28" fill="#ffd166" stroke="#f77f00" stroke-width="2"/>
+                        <!-- Blue Stripes -->
+                        <path d="M43 39 Q48 52 40 64" stroke="#00b4d8" stroke-width="4" fill="none" stroke-linecap="round"/>
+                        <path d="M77 39 Q72 52 80 64" stroke="#00b4d8" stroke-width="4" fill="none" stroke-linecap="round"/>
+                        <!-- Sweet Big Eyes -->
+                        <circle cx="51" cy="58" r="5" fill="white"/>
+                        <circle cx="69" cy="58" r="5" fill="white"/>
+                        <circle cx="52" cy="58" r="2.8" fill="#041526"/>
+                        <circle cx="68" cy="58" r="2.8" fill="#041526"/>
+                        <!-- Cute Smile -->
+                        <path d="M54 70 Q60 76 66 70" stroke="#e36414" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                      </svg>`
+            },
+            patrick: {
+                id: 'patrick',
+                name: 'Patrick Star',
+                emoji: '⭐',
+                archetype: 'The Chill Resort Connoisseur',
+                traits: ['Zero Stress', 'Effortlessly Hilarious', 'Buffet Connoisseur'],
+                description: 'Life is too short to overthink! You bring unmatched island chill, unexpected wisdom, and top-tier comedy to Bintan. While others rush the itinerary, you are living peacefully in resort mode.',
+                dinnerPower: 'Mastering the art of the second (and third) trip to the Bintan seafood buffet.',
+                workVibe: 'Keeps everyone calm under pressure and drops the funniest comment in the group chat.',
+                tableMates: 'SpongeBob & Nemo',
+                shareQuote: 'I got Patrick Star at the Belden Year End Bintan Retreat 2026 Under the Sea Dinner! ⭐🍦 Zero stress & straight to the buffet!',
+                svg: `<svg viewBox="0 0 120 120" class="w-full h-full rounded-full bg-[#088395]">
+                        <!-- Starfish Body -->
+                        <path d="M60 16 L73 46 L104 50 L80 72 L88 102 L60 86 L32 102 L40 72 L16 50 L47 46 Z" fill="#ff8fab" stroke="#fb6f92" stroke-width="2.5" stroke-linejoin="round"/>
+                        <!-- Goofy Brows & Eyes -->
+                        <path d="M48 44 L56 47" stroke="#590d22" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M72 44 L64 47" stroke="#590d22" stroke-width="2.5" stroke-linecap="round"/>
+                        <ellipse cx="54" cy="55" rx="4.5" ry="6" fill="white" stroke="#041526" stroke-width="1.5"/>
+                        <ellipse cx="66" cy="55" rx="4.5" ry="6" fill="white" stroke="#041526" stroke-width="1.5"/>
+                        <circle cx="55" cy="55" r="2" fill="#041526"/>
+                        <circle cx="65" cy="55" r="2" fill="#041526"/>
+                        <!-- Happy Goofy Grin -->
+                        <path d="M49 68 Q60 79 71 68" stroke="#590d22" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <!-- Green Shorts Hint -->
+                        <path d="M38 86 Q60 80 82 86 L86 98 L60 86 L34 98 Z" fill="#80ed99"/>
+                      </svg>`
+            },
+            nemo: {
+                id: 'nemo',
+                name: 'Nemo',
+                emoji: '🧡',
+                archetype: 'The Fearless Adventurer & Problem Solver',
+                traits: ['Brave & Adaptable', 'Resilient Spirit', 'Punches Above Weight'],
+                description: 'Never underestimate your determination! When unexpected waves hit, you adapt fast, stay courageous, and inspire everyone around you to "just keep swimming." You turn challenges into wins.',
+                dinnerPower: 'Winning big at the table trivia and lucky draw against all odds.',
+                workVibe: 'Resourceful problem-solver who keeps signals strong even in choppy waters.',
+                tableMates: 'Flounder & SpongeBob',
+                shareQuote: 'I got Nemo at the Belden Year End Bintan Retreat 2026 Under the Sea Dinner! 🧡🌊 "Just keep swimming!"',
+                svg: `<svg viewBox="0 0 120 120" class="w-full h-full rounded-full bg-[#0a4d68]">
+                        <!-- Top Fin -->
+                        <path d="M44 35 Q60 18 76 35 Z" fill="#ff7b00" stroke="#041526" stroke-width="2"/>
+                        <!-- Side Fins -->
+                        <ellipse cx="26" cy="64" rx="9" ry="6" fill="#ff7b00" stroke="#041526" stroke-width="2"/>
+                        <ellipse cx="93" cy="65" rx="6" ry="4.5" fill="#ff7b00" stroke="#041526" stroke-width="2"/>
+                        <!-- Clownfish Body -->
+                        <ellipse cx="60" cy="62" rx="30" ry="26" fill="#ff7b00" stroke="#041526" stroke-width="2.5"/>
+                        <!-- White Clownfish Stripe -->
+                        <path d="M43 38 C47 52, 47 72, 43 86 L51 87 C55 72, 55 52, 51 37 Z" fill="white" stroke="#041526" stroke-width="2"/>
+                        <!-- Eyes -->
+                        <circle cx="62" cy="56" r="5.5" fill="white" stroke="#041526" stroke-width="1.5"/>
+                        <circle cx="77" cy="56" r="5.5" fill="white" stroke="#041526" stroke-width="1.5"/>
+                        <circle cx="63" cy="56" r="2.8" fill="#041526"/>
+                        <circle cx="76" cy="56" r="2.8" fill="#041526"/>
+                        <!-- Brave Smile -->
+                        <path d="M63 69 Q70 75 76 69" stroke="#041526" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                      </svg>`
+            }
+        };
+
+        /**
+         * 2. QUIZ QUESTIONS (10 Bintan Retreat, Dinner & Belden Team Scenarios)
+         * Balanced weights across all 8 characters.
+         */
+        const QUESTIONS = [
+            {
+                category: 'The Bintan Ferry Ride',
+                question: 'We’re on the ferry heading to Bintan for the Belden Year End Retreat! How are you spending the crossing?',
+                options: [
+                    {
+                        text: 'Chatting up colleagues across rows and taking group selfies!',
+                        emoji: '🤳',
+                        weights: { spongebob: 3, ariel: 1 }
+                    },
+                    {
+                        text: 'Reviewing the retreat itinerary so I know every activity & meal time.',
+                        emoji: '🗓️',
+                        weights: { sebastian: 3, poseidon: 1 }
+                    },
+                    {
+                        text: 'Leaning back with snacks and enjoying a peaceful power nap.',
+                        emoji: '😴',
+                        weights: { patrick: 3, flounder: 1 }
+                    },
+                    {
+                        text: 'Looking out at the waves, ready to dive straight into island adventure!',
+                        emoji: '🌊',
+                        weights: { nemo: 3, ariel: 2 }
+                    }
+                ]
+            },
+            {
+                category: 'Resort Check-In',
+                question: 'You just dropped your bags in your Bintan resort room. What is your immediate move?',
+                options: [
+                    {
+                        text: 'Explore every corner of the resort, beach, and pool right away!',
+                        emoji: '🏝️',
+                        weights: { ariel: 3, nemo: 2 }
+                    },
+                    {
+                        text: 'Test the bed, AC, and minibar—maximum resort relaxation mode.',
+                        emoji: '🛏️',
+                        weights: { patrick: 3, flounder: 1 }
+                    },
+                    {
+                        text: 'Message the team chat to organize a pre-dinner meetup spot.',
+                        emoji: '📲',
+                        weights: { poseidon: 3, spongebob: 2 }
+                    },
+                    {
+                        text: 'Unpack neatly and steam my "Under the Sea" dinner outfit early.',
+                        emoji: '✨',
+                        weights: { sebastian: 3, ursula: 2 }
+                    }
+                ]
+            },
+            {
+                category: 'The Dinner Buffet',
+                question: 'Tonight’s "Under the Sea" dinner buffet just opened! What is your plate strategy?',
+                options: [
+                    {
+                        text: 'Beeline straight to the seafood & dessert—zero hesitation!',
+                        emoji: '🍤',
+                        weights: { patrick: 3, spongebob: 2 }
+                    },
+                    {
+                        text: 'Scout the entire spread first so I can engineer the optimal plate.',
+                        emoji: '🧐',
+                        weights: { sebastian: 3, ursula: 2 }
+                    },
+                    {
+                        text: 'Try the wildest, most exotic dish on the menu I’ve never tasted.',
+                        emoji: '🐚',
+                        weights: { ariel: 3, nemo: 2 }
+                    },
+                    {
+                        text: 'Wait until my whole table is seated so we can all go together.',
+                        emoji: '🥂',
+                        weights: { flounder: 3, poseidon: 2 }
+                    }
+                ]
+            },
+            {
+                category: 'Dress Code & Style',
+                question: 'How did you approach tonight’s "Under the Sea" theme outfit?',
+                options: [
+                    {
+                        text: 'Something bold and glamorous that turns heads the second I walk in!',
+                        emoji: '👑',
+                        weights: { ursula: 3, poseidon: 2 }
+                    },
+                    {
+                        text: 'Sparkly, colorful, or paired with a fun oceanic accessory.',
+                        emoji: '🧜‍♀️',
+                        weights: { ariel: 3, spongebob: 2 }
+                    },
+                    {
+                        text: 'Sharp, classic, and well-coordinated from head to toe.',
+                        emoji: '👔',
+                        weights: { sebastian: 3, flounder: 1 }
+                    },
+                    {
+                        text: 'Breezy resort comfort so I still have room for three plates of food!',
+                        emoji: '🌺',
+                        weights: { patrick: 3, nemo: 1 }
+                    }
+                ]
+            },
+            {
+                category: 'Team Bonding Challenge',
+                question: 'During the Bintan team-bonding challenge, your squad hits a tricky puzzle. What’s your role?',
+                options: [
+                    {
+                        text: 'Take charge, rally the squad, and assign everyone’s strengths.',
+                        emoji: '🔱',
+                        weights: { poseidon: 3, sebastian: 1 }
+                    },
+                    {
+                        text: 'Jump in fearlessly to test a clever, unconventional shortcut!',
+                        emoji: '⚡',
+                        weights: { nemo: 3, ariel: 2 }
+                    },
+                    {
+                        text: 'Keep cheering everyone on at 110% volume so energy never drops!',
+                        emoji: '📣',
+                        weights: { spongebob: 3, flounder: 2 }
+                    },
+                    {
+                        text: 'Negotiate a creative angle with the game host to gain an edge.',
+                        emoji: '🎭',
+                        weights: { ursula: 3, patrick: 1 }
+                    }
+                ]
+            },
+            {
+                category: 'Belden Connection Style',
+                question: 'At Belden, we’re all about strong, reliable connections. What’s your superpower at work?',
+                options: [
+                    {
+                        text: 'Industrial-grade reliability—if I’m on it, deadlines never drop.',
+                        emoji: '⚙️',
+                        weights: { sebastian: 3, flounder: 2 }
+                    },
+                    {
+                        text: 'High-bandwidth energy—I connect people across teams effortlessly.',
+                        emoji: '⚡',
+                        weights: { spongebob: 3, ariel: 1 }
+                    },
+                    {
+                        text: 'Signal booster—I spot big-picture opportunities and steer the vision.',
+                        emoji: '📡',
+                        weights: { poseidon: 3, ursula: 2 }
+                    },
+                    {
+                        text: 'Zero-latency calm—nothing rattles me even when the pressure is on.',
+                        emoji: '🧘',
+                        weights: { patrick: 3, nemo: 2 }
+                    }
+                ]
+            },
+            {
+                category: 'Plot Twist Alert',
+                question: 'Uh oh! A sudden tropical rain shower changes the outdoor afternoon plan. How do you react?',
+                options: [
+                    {
+                        text: 'Pivot immediately—let’s turn the lobby lounge into a board game arena!',
+                        emoji: '🎲',
+                        weights: { nemo: 3, spongebob: 2 }
+                    },
+                    {
+                        text: 'Stay completely unbothered—rain sounds + cozy coffee = perfection.',
+                        emoji: '☕',
+                        weights: { patrick: 3, flounder: 2 }
+                    },
+                    {
+                        text: 'Quickly coordinate Plan B so the whole group still has a smooth afternoon.',
+                        emoji: '📋',
+                        weights: { sebastian: 3, poseidon: 1 }
+                    },
+                    {
+                        text: 'Treat it as an excuse for an impromptu spa or lounge session!',
+                        emoji: '💅',
+                        weights: { ursula: 3, ariel: 1 }
+                    }
+                ]
+            },
+            {
+                category: 'Stage Games & Lucky Draw',
+                question: 'The MC calls for volunteers for a surprise stage game at tonight’s dinner! What happens?',
+                options: [
+                    {
+                        text: 'I’m already sprinting up to the stage—put me in, coach!',
+                        emoji: '🎤',
+                        weights: { spongebob: 3, ursula: 2 }
+                    },
+                    {
+                        text: 'Cheering wildly from my table and hyping up our representative!',
+                        emoji: '🙌',
+                        weights: { flounder: 3, patrick: 2 }
+                    },
+                    {
+                        text: 'Decoding the game rules so my table dominates and wins the prize.',
+                        emoji: '🏆',
+                        weights: { nemo: 2, sebastian: 2, poseidon: 2 }
+                    },
+                    {
+                        text: 'Capturing iconic videos for the Belden 2026 highlight reel!',
+                        emoji: '📸',
+                        weights: { ariel: 2, flounder: 1 }
+                    }
+                ]
+            },
+            {
+                category: 'Table Mates & Mingling',
+                question: 'You’re seated next to colleagues from a different department you rarely work with. What do you do?',
+                options: [
+                    {
+                        text: 'Lead a fun table icebreaker and get everyone clinking glasses!',
+                        emoji: '🥂',
+                        weights: { poseidon: 3, spongebob: 2 }
+                    },
+                    {
+                        text: 'Ask curious questions about their projects and wildest travel stories.',
+                        emoji: '🗺️',
+                        weights: { ariel: 3, nemo: 1 }
+                    },
+                    {
+                        text: 'Make sure they feel welcome, top up their drinks, and share dishes.',
+                        emoji: '💛',
+                        weights: { flounder: 3, sebastian: 1 }
+                    },
+                    {
+                        text: 'Swap hilarious office memes and effortlessly win the table over.',
+                        emoji: '😏',
+                        weights: { ursula: 2, patrick: 2 }
+                    }
+                ]
+            },
+            {
+                category: 'Post-Dinner Bintan Night',
+                question: 'Dinner wraps up, the music turns up, and the Bintan night is still young! Where are you?',
+                options: [
+                    {
+                        text: 'Center of the dance floor or karaoke mic—closing out the night!',
+                        emoji: '🕺',
+                        weights: { spongebob: 3, ursula: 2 }
+                    },
+                    {
+                        text: 'Stargazing by the Bintan beach with deep talks and ocean breeze.',
+                        emoji: '🌌',
+                        weights: { ariel: 3, flounder: 2 }
+                    },
+                    {
+                        text: 'Leading a celebratory toast with the crew before calling it a night.',
+                        emoji: '🔱',
+                        weights: { poseidon: 3, nemo: 2 }
+                    },
+                    {
+                        text: 'Grabbing one last late-night snack and heading to bed happy & full.',
+                        emoji: '🍦',
+                        weights: { patrick: 3, sebastian: 1 }
+                    }
+                ]
+            }
+        ];
+
+        /**
+         * 3. APPLICATION STATE
+         */
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(QUESTIONS.length).fill(null);
+        let finalCharacter = null;
+
+        /**
+         * 4. AMBIENT BUBBLE GENERATOR
+         */
+        function initBubbles() {
+            const container = document.getElementById('bubble-container');
+            const bubbleCount = 18;
+
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                const size = Math.floor(Math.random() * 22) + 8;
+                const left = Math.random() * 100;
+                const duration = Math.random() * 10 + 9;
+                const delay = Math.random() * 10;
+
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${left}%`;
+                bubble.style.animationDuration = `${duration}s`;
+                bubble.style.animationDelay = `${delay}s`;
+
+                container.appendChild(bubble);
+            }
+        }
+
+        /**
+         * 5. NAVIGATION & QUIZ FLOW
+         */
+        function showScreen(screenId) {
+            const screens = ['welcome-screen', 'quiz-screen', 'loading-screen', 'result-screen'];
+            screens.forEach(id => {
+                const el = document.getElementById(id);
+                if (id === screenId) {
+                    el.classList.remove('hidden');
+                    el.classList.remove('screen-enter');
+                    void el.offsetWidth;
+                    el.classList.add('screen-enter');
+                } else {
+                    el.classList.add('hidden');
+                }
+            });
+
+            const restartBtn = document.getElementById('header-restart-btn');
+            if (screenId === 'quiz-screen' || screenId === 'result-screen') {
+                restartBtn.classList.remove('hidden');
+            } else {
+                restartBtn.classList.add('hidden');
+            }
+        }
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            userAnswers = new Array(QUESTIONS.length).fill(null);
+            finalCharacter = null;
+            showScreen('quiz-screen');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const q = QUESTIONS[currentQuestionIndex];
+            const total = QUESTIONS.length;
+            const progressPercent = ((currentQuestionIndex + 1) / total) * 100;
+            const depths = [
+                '100m',
+                '200m',
+                '300m',
+                '400m',
+                '500m',
+                '600m',
+                '700m',
+                '800m',
+                '900m',
+                '1,000m (Abyssal Trench!)'
+            ];
+
+            // Update Progress Bar & Swimming Diver
+            document.getElementById('question-counter').textContent = `Question ${currentQuestionIndex + 1} of ${total}`;
+            document.getElementById('depth-indicator').textContent = `Depth: ${depths[currentQuestionIndex]} 🌊`;
+            document.getElementById('progress-fill').style.width = `${progressPercent}%`;
+            document.getElementById('progress-sub').style.left = `calc(${progressPercent}% - 4px)`;
+
+            // Re-trigger question container entrance animation
+            const qContainer = document.getElementById('question-container');
+            qContainer.classList.remove('screen-enter');
+            void qContainer.offsetWidth;
+            qContainer.classList.add('screen-enter');
+
+            // Populate Question Text
+            document.getElementById('question-category').textContent = q.category;
+            document.getElementById('question-text').textContent = q.question;
+
+            // Populate Options
+            const optionsList = document.getElementById('options-list');
+            optionsList.innerHTML = '';
+
+            q.options.forEach((opt, idx) => {
+                const isSelected = userAnswers[currentQuestionIndex] === idx;
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `option-btn w-full text-left p-4 rounded-2xl flex items-center gap-3.5 cursor-pointer ${isSelected ? 'selected' : ''}`;
+                btn.onclick = () => selectOption(idx);
+
+                btn.innerHTML = `
+                    <span class="flex-shrink-0 w-10 h-10 rounded-xl bg-abyss/60 border border-white/10 flex items-center justify-center text-xl shadow-inner">
+                        ${opt.emoji}
+                    </span>
+                    <span class="text-sm sm:text-base font-medium text-white leading-snug">
+                        ${opt.text}
+                    </span>
+                `;
+                optionsList.appendChild(btn);
+            });
+
+            // Enable/disable Back button
+            document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+        }
+
+        function selectOption(optionIndex) {
+            userAnswers[currentQuestionIndex] = optionIndex;
+
+            // Visual highlight feedback before advancing
+            const buttons = document.querySelectorAll('#options-list .option-btn');
+            buttons.forEach((b, i) => {
+                if (i === optionIndex) {
+                    b.classList.add('selected');
+                } else {
+                    b.classList.remove('selected');
+                }
+            });
+
+            // Brief delay for tactile tap satisfaction
+            setTimeout(() => {
+                if (currentQuestionIndex < QUESTIONS.length - 1) {
+                    currentQuestionIndex++;
+                    renderQuestion();
+                } else {
+                    calculateAndShowResult();
+                }
+            }, 240);
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        /**
+         * 6. WEIGHTED SCORING ENGINE & DIVING TRANSITION
+         */
+        function calculateAndShowResult() {
+            showScreen('loading-screen');
+
+            // Cycle fun Bintan & ocean loading subtexts
+            const subtextEl = document.getElementById('loading-subtext');
+            const messages = [
+                'Analyzing your Bintan retreat energy...',
+                'Calibrating Belden ocean frequencies...',
+                'Matching your sea alter-ego...'
+            ];
+            let msgIdx = 0;
+            const msgInterval = setInterval(() => {
+                msgIdx = (msgIdx + 1) % messages.length;
+                subtextEl.textContent = messages[msgIdx];
+            }, 600);
+
+            // Tally weighted scores across all 8 characters
+            const scores = {
+                spongebob: 0,
+                ariel: 0,
+                sebastian: 0,
+                poseidon: 0,
+                ursula: 0,
+                flounder: 0,
+                patrick: 0,
+                nemo: 0
+            };
+
+            userAnswers.forEach((selectedOptionIdx, qIdx) => {
+                if (selectedOptionIdx !== null) {
+                    const weights = QUESTIONS[qIdx].options[selectedOptionIdx].weights;
+                    for (const [charKey, points] of Object.entries(weights)) {
+                        scores[charKey] += points;
+                    }
+                }
+            });
+
+            // Determine winner (with subtle tie-breaker using last question preference)
+            let topCharKey = 'spongebob';
+            let highestScore = -1;
+
+            const lastChoiceIdx = userAnswers[QUESTIONS.length - 1];
+            const lastWeights = lastChoiceIdx !== null ? QUESTIONS[QUESTIONS.length - 1].options[lastChoiceIdx].weights : {};
+
+            for (const [charKey, totalPoints] of Object.entries(scores)) {
+                const tieBreaker = (lastWeights[charKey] || 0) * 0.1;
+                const adjustedScore = totalPoints + tieBreaker;
+                if (adjustedScore > highestScore) {
+                    highestScore = adjustedScore;
+                    topCharKey = charKey;
+                }
+            }
+
+            finalCharacter = CHARACTERS[topCharKey];
+
+            // Reveal Result Card after 1.8s diving suspense
+            setTimeout(() => {
+                clearInterval(msgInterval);
+                populateResultCard(finalCharacter);
+                showScreen('result-screen');
+                triggerCelebrationBurst(finalCharacter.emoji);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 1800);
+        }
+
+        function triggerCelebrationBurst(charEmoji) {
+            const symbols = [charEmoji, '🫧', '✨', '🐚', '🌊', '🔱'];
+            const count = 26;
+
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('div');
+                el.className = 'burst-particle text-2xl';
+                el.textContent = symbols[i % symbols.length];
+
+                // Start near upper-center of viewport
+                el.style.left = '50%';
+                el.style.top = '32%';
+
+                const angle = (Math.PI * 2 * i) / count + (Math.random() * 0.3);
+                const velocity = 90 + Math.random() * 160;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity - 40;
+                const rot = (Math.random() - 0.5) * 360;
+
+                el.style.setProperty('--tx', `${tx}px`);
+                el.style.setProperty('--ty', `${ty}px`);
+                el.style.setProperty('--rot', `${rot}deg`);
+
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 2500);
+            }
+        }
+
+        function populateResultCard(char) {
+            document.getElementById('result-emoji-badge').textContent = char.emoji;
+            document.getElementById('character-artwork').innerHTML = char.svg;
+            document.getElementById('character-archetype').textContent = char.archetype;
+            document.getElementById('character-name').textContent = char.name;
+            document.getElementById('character-description').textContent = char.description;
+            document.getElementById('character-dinner-power').textContent = char.dinnerPower;
+            document.getElementById('character-work-vibe').textContent = char.workVibe;
+            document.getElementById('character-table-mates').textContent = char.tableMates;
+
+            const traitsContainer = document.getElementById('character-traits');
+            traitsContainer.innerHTML = char.traits.map(trait => `
+                <span class="px-3 py-1 rounded-full bg-seafoam/15 border border-seafoam/35 text-sky-100 text-xs font-semibold">
+                    ${trait}
+                </span>
+            `).join('');
+        }
+
+        /**
+         * 7. CLIPBOARD SHARE, CHARACTER ROSTER MODAL & TOAST
+         */
+        function copyResultToShare() {
+            if (!finalCharacter) return;
+
+            const shareText = `${finalCharacter.shareQuote}\n\nFind out yours at our Belden Bintan Retreat 2026 Quiz! 🌊🔱`;
+
+            const textArea = document.createElement('textarea');
+            textArea.value = shareText;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                document.execCommand('copy');
+                showToast(`Copied "${finalCharacter.name}" result! Paste it in the Belden chat 🎉`);
+            } catch (err) {
+                showToast('Result ready! Screenshot your card to share with your table 📸');
+            }
+
+            document.body.removeChild(textArea);
+        }
+
+        function openRosterModal() {
+            const rosterList = document.getElementById('roster-list');
+            rosterList.innerHTML = Object.values(CHARACTERS).map(char => {
+                const isCurrent = finalCharacter && finalCharacter.id === char.id;
+                return `
+                    <div class="p-3.5 rounded-2xl border ${isCurrent ? 'bg-treasure/15 border-treasure' : 'bg-abyss/60 border-white/10'} flex items-center gap-3.5">
+                        <div class="w-14 h-14 rounded-full flex-shrink-0 overflow-hidden border border-seafoam/40">
+                            ${char.svg}
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                                <h4 class="font-display font-bold text-white text-base leading-tight">${char.name}</h4>
+                                ${isCurrent ? '<span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-treasure text-abyss">You</span>' : ''}
+                            </div>
+                            <p class="text-xs font-semibold text-seafoam mt-0.5">${char.archetype}</p>
+                            <p class="text-xs text-sky-100/75 mt-1 line-clamp-2">${char.dinnerPower}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('roster-modal').classList.remove('hidden');
+        }
+
+        function closeRosterModal() {
+            document.getElementById('roster-modal').classList.add('hidden');
+        }
+
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-message').textContent = message;
+
+            toast.classList.remove('opacity-0', 'translate-y-4');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-4');
+            }, 3400);
+        }
+
+        function resetQuiz() {
+            closeRosterModal();
+            currentQuestionIndex = 0;
+            userAnswers = new Array(QUESTIONS.length).fill(null);
+            finalCharacter = null;
+            showScreen('welcome-screen');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize background bubbles on load
+        window.addEventListener('DOMContentLoaded', initBubbles);
+    </script>
+</body>
+</html>
